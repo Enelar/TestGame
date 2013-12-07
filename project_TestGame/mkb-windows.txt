@@ -1,1 +1,1 @@
-VC11X;build_testgame_vc11x
+VC11X;build
