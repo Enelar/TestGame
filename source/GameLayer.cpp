@@ -1,15 +1,6 @@
 #include "GameLayer.h"
 #include "entity\entity.h"
 
-class icon : entity
-{
-public:
-  icon( b2Vec2 pos )
-    : entity("icon.png", pos, b2Vec2(10, 10), 100)
-  {
-  }
-};
-
 GameLayer::~GameLayer()
 {
 }
@@ -55,12 +46,6 @@ bool GameLayer::init()
 
 void GameLayer::draw()
 {
-}
-
-void GameLayer::onEnter()
-{
-  CCLayer::onEnter();
-  new icon(b2Vec2(0, 0));
 }
 
 #include "entity\entity_manager.h"

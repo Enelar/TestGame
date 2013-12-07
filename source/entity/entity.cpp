@@ -51,6 +51,11 @@ b2Vec2 &entity::Velosity()
   return vel;
 }
 
+b2Vec2 &entity::Acceleration()
+{
+  return acc;
+}
+
 b2Vec2 &entity::Size()
 {
   return size;
