@@ -16,6 +16,10 @@ public:
   void AddObject( entity *const );
   void RemoveObject( entity *const );
   void Update( double dt );
+#if CPP11_SUPPORTED
+  void Foreach( std::function<void(entity *const)> );
+#endif
+  void Redraw();
   ~entity_manager();
 
   static entity_manager &Instance();
