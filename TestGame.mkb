@@ -1,5 +1,13 @@
 #!/usr/bin/env mkb
 
+options
+{
+  buildenv="VC11X"
+  default-buildenv="VC12X"
+  incredibuild
+  builddir="build"
+}
+
 files
 {
     [source/init]

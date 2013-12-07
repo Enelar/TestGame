@@ -215,4 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 
 #Marmalade SDK
-build_testgame_vc11x/*
+build/*

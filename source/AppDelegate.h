@@ -1,6 +1,7 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
+#include "stdafx.h"
 #include "CCApplication.h"
 
 class AppDelegate : private cocos2d::CCApplication

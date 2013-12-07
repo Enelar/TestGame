@@ -1,8 +1,7 @@
 #ifndef __GAMELAYER_H__
 #define __GAMELAYER_H__
 
-#include "cocos2d.h"
-#include "Box2D\Box2D.h"
+#include "stdafx.h"
 
 using namespace cocos2d;
 

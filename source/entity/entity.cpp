@@ -96,5 +96,5 @@ void entity::RecalculateValues( double dt )
 
 void entity::SyncValues() const
 {
-  sprite->setPosition(ccp(pos.x, pos.y));
+  sprite->setPosition(convert<cocos2d::CCPoint>(pos));
 }
