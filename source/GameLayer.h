@@ -15,6 +15,8 @@ public:
     // Init method
     virtual bool init();
 
+    virtual void onEnter();
+
 	// Draw method
 	virtual void draw();
 

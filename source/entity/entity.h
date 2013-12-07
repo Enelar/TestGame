@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 #include <string>
 
@@ -43,4 +45,6 @@ public:
   virtual void OnMove();
   //etc
   */
+
+  friend class entity_manager;
 };

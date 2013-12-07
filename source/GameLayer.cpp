@@ -1,4 +1,14 @@
 #include "GameLayer.h"
+#include "entity\entity.h"
+
+class icon : entity
+{
+public:
+  icon( b2Vec2 pos )
+    : entity("icon.png", pos, b2Vec2(10, 10), 100)
+  {
+  }
+};
 
 GameLayer::~GameLayer()
 {
@@ -19,14 +29,17 @@ CCScene* GameLayer::scene()
     return scene;
 }
 
+void test(double)
+{
+}
+
 // on "init" you need to initialize your instance
 bool GameLayer::init()
 {
     if (!CCLayer::init())
         return false;
 
-    // Create main loop
-    this->schedule(schedule_selector(GameLayer::update));
+    schedule(schedule_selector(GameLayer::update));
 
     // COCOS2D TIP
     // Create Cocos2D objects here
@@ -44,11 +57,19 @@ void GameLayer::draw()
 {
 }
 
+void GameLayer::onEnter()
+{
+  CCLayer::onEnter();
+  new icon(b2Vec2(0, 0));
+}
+
+#include "entity\entity_manager.h"
+
 void GameLayer::update(float dt)
 {
 	// Update Box2D world
 	world->Step(dt, 6, 3);
-
+    entity_manager::Instance().Update(dt);
     // BOX2D TIP
     // Update objects from box2d coordinates here
 }
