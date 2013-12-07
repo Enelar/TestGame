@@ -2,12 +2,15 @@
 
 files
 {
+    [source/init]
     (source)
-    TestGame.cpp
-    AppDelegate.cpp
-    AppDelegate.h
-    GameLayer.cpp
-    GameLayer.h
+    "*.cpp"
+    "*.h"
+    
+    [source/entity]
+    (source/entity)
+    "*.cpp"
+    "*.h"
 }
 
 subprojects

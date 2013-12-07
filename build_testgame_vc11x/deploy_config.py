@@ -4,7 +4,7 @@
 # tool during the build process.
 
 config = {}
-cmdline = ['C:/Marmalade/7.0/s3e/makefile_builder/mkb.py', 'c:/Users/Enelar/Documents/GitHub/TestGame/TestGame.mkb', '--deploy-only', '--hub-data', 'C:/Users/Enelar/Documents/GitHub/TestGame/project_TestGame/mkb-windows.txt', '--buildenv=VC11X']
+cmdline = ['C:/Marmalade/7.0/s3e/makefile_builder/mkb.py', 'c:/Users/Enelar/Documents/GitHub/TestGame/TestGame.mkb', '--buildenv=VC11X', '--fake-vc-call', '--deploy-only']
 mkb = 'c:/Users/Enelar/Documents/GitHub/TestGame/TestGame.mkb'
 mkf = ['c:\\marmalade\\7.0\\modules\\iwutil\\iwutil.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\libjpeg\\libjpeg.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\libpng\\libpng.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\zlib\\zlib.mkf', 'c:\\marmalade\\7.0\\modules\\iwgl\\iwgl.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\cocos2dx\\cocos2dx\\proj.marmalade\\cocos2dx.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\cocos2dx\\cocos2dx\\platform\\third_party\\marmalade\\libxml2.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\cocos2dx\\cocos2dx\\platform\\third_party\\marmalade\\freetype.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\cocos2dx\\cocos2dx\\platform\\third_party\\marmalade\\libtiff\\libtiff.mkf', 'c:\\marmalade\\7.0\\modules\\third_party\\cocos2dx\\external\\box2d\\proj.marmalade\\box2d.mkf']
 
@@ -29,7 +29,7 @@ class DefaultConfig(DeployConfig):
     caption = 'TestGame'
     long_caption = 'TestGame'
     version = [0, 0, 1]
-    config = ['c:/Users/Enelar/Documents/GitHub/TestGame\\data\\app.icf']
+    config = ['c:/Users/Enelar/Documents/GitHub/TestGame/data/app.icf']
     data_dir = 'c:/Users/Enelar/Documents/GitHub/TestGame/data'
     iphone_link_lib = []
     wp8_ext_managed_dll = []
