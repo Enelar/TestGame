@@ -36,6 +36,7 @@ public:
   void Update( double dt );
 
   virtual void OnCreate();
+  virtual void OnDraw();
   virtual void OnUpdate( double dt );
   virtual void OnDestroy();
   /*

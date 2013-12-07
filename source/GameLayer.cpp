@@ -44,11 +44,13 @@ bool GameLayer::init()
     return true;
 }
 
+#include "entity\entity_manager.h"
+
+
 void GameLayer::draw()
 {
+  entity_manager::Instance().Redraw();
 }
-
-#include "entity\entity_manager.h"
 
 void GameLayer::update(float dt)
 {

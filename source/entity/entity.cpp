@@ -83,6 +83,10 @@ void entity::OnDestroy()
 {
 }
 
+void entity::OnDraw()
+{
+}
+
 void entity::Update( double dt )
 {
   CCAssert(!recurse_contstraight, "Object recursive updating forbidden");
