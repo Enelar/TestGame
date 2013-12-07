@@ -19,6 +19,11 @@ files
     (source/entity)
     "*.cpp"
     "*.h"
+
+    [source/objects]
+    (source/objects)
+    "*.cpp"
+    "*.h"
 }
 
 subprojects

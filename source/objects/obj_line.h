@@ -1,7 +1,7 @@
 #include "../entity/entity.h"
 #include <ccTypes.h>
 
-class obj_line : entity
+class obj_line : public entity
 {
 private:
   cocos2d::ccColor4F color;

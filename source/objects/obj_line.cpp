@@ -14,7 +14,8 @@ obj_line::obj_line(b2Vec2 _pos, b2Vec2 _size, cocos2d::ccColor4F _color, b2Vec2 
 void obj_line::OnUpdate(double dt)
 {
   cocos2d::ccDrawColor4F(color.r, color.g, color.b, color.a);
-  cocos2d::ccDrawLine(convert<cocos2d::CCPoint>(Position()), convert<cocos2d::CCPoint>(Size()));
+  auto end = Position() + Size();
+  cocos2d::ccDrawLine(convert<cocos2d::CCPoint>(Position()), convert<cocos2d::CCPoint>(end));
 }
 
 cocos2d::ccColor4F obj_line::getColor()

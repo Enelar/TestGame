@@ -123,6 +123,8 @@ void entity::RecalculateValues( double dt )
 
 void entity::SyncValues() const
 {
+  if (!sprite)
+    return;
   sprite->setPosition(convert<cocos2d::CCPoint>(pos));
 
   auto scale =
