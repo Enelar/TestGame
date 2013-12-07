@@ -4,9 +4,20 @@ namespace
 {
   cocos2d::CCScene *GetScene()
   {
-    return cocos2d::CCDirector::sharedDirector()->getRunningScene();
+    cocos2d::CCScene *scene = cocos2d::CCDirector::sharedDirector()->getRunningScene();
+    if (scene == nullptr)
+      throw "Fail";
+    return scene;
   }
 }
+
+entity::entity( cocos2d::CCSprite *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc)
+  : sprite(_sprite),
+  pos(pos), size(_size), life(_life, _life), vel(_vel), acc(_acc), stage(CREATE), recurse_contstraight(false)
+{
+
+}
+
 
 entity::entity( std::string _image_name, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc )
   : sprite(cocos2d::CCSprite::create(_image_name.c_str())),
@@ -15,9 +26,17 @@ entity::entity( std::string _image_name, b2Vec2 _pos, b2Vec2 _size, float32 _lif
   GetScene()->addChild(sprite);
 }
 
+entity::entity( b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc )
+  : sprite(nullptr),
+  pos(pos), size(_size), life(_life, _life), vel(_vel), acc(_acc), stage(CREATE), recurse_contstraight(false)
+
+{
+}
+
 entity::~entity()
 {
-  GetScene()->removeChild(sprite);
+  if (sprite != nullptr)
+    GetScene()->removeChild(sprite);
 }
 
 b2Vec2 &entity::Position()

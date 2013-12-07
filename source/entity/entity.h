@@ -19,6 +19,9 @@ class entity
   void SyncValues() const;
 public:
   entity( std::string image_name, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
+  entity( b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
+  entity( cocos2d::CCSprite *sprite, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
+
   virtual ~entity();
 
   b2Vec2 &Position();
