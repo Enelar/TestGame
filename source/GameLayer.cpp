@@ -1,6 +1,11 @@
 #include "GameLayer.h"
 #include "entity\entity.h"
 
+GameLayer::GameLayer()
+  : week_camera(nullptr)
+{
+}
+
 GameLayer::~GameLayer()
 {
 }
@@ -57,6 +62,15 @@ void GameLayer::update(float dt)
 	// Update Box2D world
 	world->Step(dt, 6, 3);
     entity_manager::Instance().Update(dt);
+
+   // auto obj = CCDirector::sharedDirector()->getRunningScene();
+    //auto new_size = b2Vec2(1 * dt, 1 * dt) + convert<b2Vec2>(obj->getPosition());
+    /*
+    setPosition(convert<cocos2d::CCPoint>(new_size));
+    CCCamera *cam = getCamera();
+    cam->setCenterXYZ(new_size.x, new_size.y, 0);
+    */
+    //obj->setPosition(convert<cocos2d::CCPoint>(new_size));
     // BOX2D TIP
     // Update objects from box2d coordinates here
 }

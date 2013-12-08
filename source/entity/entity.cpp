@@ -11,7 +11,7 @@ namespace
   }
 }
 
-entity::entity( cocos2d::CCSprite *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc)
+entity::entity( cocos2d::CCNode *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc)
   : sprite(_sprite),
   pos(_pos), size(_size), life(_life, _life), vel(_vel), acc(_acc), stage(CREATE), recurse_contstraight(false)
 {
@@ -61,6 +61,11 @@ b2Vec2 &entity::Size()
   return size;
 }
 
+b2Vec2 entity::Size() const
+{
+  return size;
+}
+
 float32 entity::MaxLife() const
 {
   return life.y;
@@ -95,6 +100,7 @@ void entity::Update( double dt )
   {
   case entity::CREATE:
     OnCreate();
+    OnUpdate(0);
     stage = ONLINE;
     break;
   case entity::ONLINE:
@@ -102,6 +108,7 @@ void entity::Update( double dt )
     break;
   case entity::PREOFF:
     stage = OFFLINE;
+    OnUpdate(0);
     OnDestroy();
   case entity::OFFLINE:
     break;
@@ -148,4 +155,14 @@ void entity::SyncValues() const
     sprite->setScaleX(scale.x);
     sprite->setScaleY(scale.y);
   }();
+}
+
+CCNode *&entity::RawNodeAccess()
+{
+  return sprite;
+}
+
+CCNode *entity::RawNodeAccess() const
+{
+  return sprite;
 }
