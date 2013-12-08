@@ -12,11 +12,10 @@ public:
   connector<b2Vec2> Velosity();
   connector<b2Vec2> Acceleration();
 
-  void OnCreate() override;
-  void OnDraw() override;
-  void OnUpdate( double dt ) override;
+  b2Vec2 Size() const;
+  b2Vec2 &Size();
+
 private:
-  void SyncValues();
   template<typename OriginT>
   b2Vec2 &Update( b2Vec2 &, b2Vec2 &(OriginT::*)() ); 
 };

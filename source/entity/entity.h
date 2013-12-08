@@ -29,6 +29,7 @@ public:
   b2Vec2 &Position();
   b2Vec2 &Velosity();
   b2Vec2 &Acceleration();
+  b2Vec2 Size() const;
   b2Vec2 &Size();
   float32 MaxLife() const;
   float32 &CurLife();
