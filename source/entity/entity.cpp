@@ -11,7 +11,7 @@ namespace
   }
 }
 
-entity::entity( cocos2d::CCSprite *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc)
+entity::entity( cocos2d::CCNode *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _life, b2Vec2 _vel, b2Vec2 _acc)
   : sprite(_sprite),
   pos(_pos), size(_size), life(_life, _life), vel(_vel), acc(_acc), stage(CREATE), recurse_contstraight(false)
 {
@@ -148,4 +148,9 @@ void entity::SyncValues() const
     sprite->setScaleX(scale.x);
     sprite->setScaleY(scale.y);
   }();
+}
+
+CCNode *&entity::RawNodeAccess()
+{
+  return sprite;
 }

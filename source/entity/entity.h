@@ -5,7 +5,7 @@
 
 class entity
 {
-  cocos2d::CCSprite *sprite;
+  cocos2d::CCNode *sprite;
   b2Vec2 pos, vel, acc, size;
   b2Vec2 life;
 
@@ -22,7 +22,7 @@ class entity
 public:
   entity( std::string image_name, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
   entity( b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
-  entity( cocos2d::CCSprite *sprite, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
+  entity( cocos2d::CCNode *sprite, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
 
   virtual ~entity();
 
@@ -47,6 +47,9 @@ public:
   virtual void OnMove();
   //etc
   */
+
+protected:
+  CCNode *&RawNodeAccess();
 
   friend class entity_manager;
 };
