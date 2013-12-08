@@ -15,6 +15,8 @@ public:
   b2Vec2 Size() const;
   b2Vec2 &Size();
 
+  void OnUpdate( double dt ) override;
+
 private:
   template<typename OriginT>
   b2Vec2 &Update( b2Vec2 &, b2Vec2 &(OriginT::*)() ); 

@@ -51,6 +51,7 @@ public:
 
 protected:
   CCNode *&RawNodeAccess();
+  CCNode *RawNodeAccess() const;
 
   friend class entity_manager;
 };

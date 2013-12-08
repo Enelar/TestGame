@@ -16,7 +16,6 @@ obj_camera::obj_camera()
 {
   RawNodeAccess() = CCDirector::sharedDirector()->getRunningScene();
   entity::Position() = convert<b2Vec2>(RawNodeAccess()->getPosition());
-  entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
 }
 
 obj_camera::~obj_camera()
@@ -46,13 +45,21 @@ b2Vec2 &obj_camera::Update( b2Vec2 &target, b2Vec2 &(OriginT::*Origin)() )
   return target;
 }
 
+void obj_camera::OnUpdate( double dt )
+{
+  entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
+}
+
+
 b2Vec2 obj_camera::Size() const
 {
+  entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
   return entity::Size();
 }
 
 b2Vec2 &obj_camera::Size()
 {
   CCAssert(false, "You cant change size of camera");
+  entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
   return entity::Size();
 }

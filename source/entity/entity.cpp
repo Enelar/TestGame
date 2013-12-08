@@ -100,6 +100,7 @@ void entity::Update( double dt )
   {
   case entity::CREATE:
     OnCreate();
+    OnUpdate(0);
     stage = ONLINE;
     break;
   case entity::ONLINE:
@@ -107,6 +108,7 @@ void entity::Update( double dt )
     break;
   case entity::PREOFF:
     stage = OFFLINE;
+    OnUpdate(0);
     OnDestroy();
   case entity::OFFLINE:
     break;
@@ -156,6 +158,11 @@ void entity::SyncValues() const
 }
 
 CCNode *&entity::RawNodeAccess()
+{
+  return sprite;
+}
+
+CCNode *entity::RawNodeAccess() const
 {
   return sprite;
 }
