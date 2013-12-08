@@ -3,13 +3,15 @@
 
 #include "stdafx.h"
 
-using namespace cocos2d;
+#include "objects\obj_camera.h"
 
 class GameLayer : public cocos2d::CCLayer
 {
+  obj_camera *week_camera;
 protected:
     b2World*		world;		// Instance of physics world
 public:
+    GameLayer();
     ~GameLayer();
     
     // Init method
