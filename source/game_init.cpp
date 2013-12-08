@@ -11,6 +11,7 @@ public:
   }
 };
 
+#include "objects\obj_text.h"
 void GameLayer::onEnter()
 {
   CCLayer::onEnter();
@@ -18,7 +19,10 @@ void GameLayer::onEnter()
   ico->Acceleration().y += 1;
   ico->Velosity() += b2Vec2(1, 0);
   //CCLabelBMFont *label = CCLabelBMFont::create("bitmap", "test.fnt");
-  CCLabelAtlas *label = CCLabelAtlas::create("a123", "test.png", 20, 30, 'a');
-  CCDirector::sharedDirector()->getRunningScene()->addChild(label);
+  //CCLabelBMFont *label = CCLabelBMFont::create("FUCK!", "java.fnt");// 85, kCCTextAlignmentLeft);
+  //label->setPositionX(100);
+  //label->setPositionY(100);
+  //CCDirector::sharedDirector()->getRunningScene()->addChild(label);
   //CCSprite *char_B = label->getChildByTag(0);
+  auto tx = new obj_text("123", b2Vec2(0, 0), ccc4f(1, 0, 0, 1));
 }
