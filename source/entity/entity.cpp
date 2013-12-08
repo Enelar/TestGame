@@ -15,6 +15,8 @@ entity::entity( cocos2d::CCNode *_sprite, b2Vec2 _pos, b2Vec2 _size, float32 _li
   : sprite(_sprite),
   pos(_pos), size(_size), life(_life, _life), vel(_vel), acc(_acc), stage(CREATE), recurse_contstraight(false)
 {
+  if (sprite)
+    GetScene()->addChild(sprite);
   entity_manager::Instance().AddObject(this);
 }
 
