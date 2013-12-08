@@ -9,6 +9,8 @@ using ax::convert;
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
 
+using namespace cocos2d;
+
 template<>
 cocos2d::CCPoint convert( const b2Vec2 &);
 template<>
