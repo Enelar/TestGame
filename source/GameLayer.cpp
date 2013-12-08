@@ -46,8 +46,6 @@ bool GameLayer::init()
 
 void GameLayer::draw()
 {
-  //CCLabelAtlas *label1 = CCLabelAtlas::create("Hello World", "test.png", 48, 64, ' ');
-  
 }
 
 #include "entity\entity_manager.h"

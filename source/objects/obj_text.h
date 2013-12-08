@@ -1,6 +1,4 @@
 #include "../entity/entity.h"
-#include <ccTypes.h>
-#include <CCLabelBMFont.h>
 
 class obj_text : public entity
 {
