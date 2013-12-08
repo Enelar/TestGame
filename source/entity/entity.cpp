@@ -61,6 +61,11 @@ b2Vec2 &entity::Size()
   return size;
 }
 
+b2Vec2 entity::Size() const
+{
+  return size;
+}
+
 float32 entity::MaxLife() const
 {
   return life.y;
