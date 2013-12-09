@@ -11,8 +11,6 @@ public:
   }
 };
 
-
-#include "objects\buildings\transmitter.h"
 void GameLayer::onEnter()
 {
   CCLayer::onEnter();
@@ -21,6 +19,4 @@ void GameLayer::onEnter()
   auto ico = new icon(b2Vec2(0, 0));
   ico->Acceleration().y += 1;
   ico->Velosity() += b2Vec2(1, 0);
-
-  auto ker = new transmitter(b2Vec2(100, 100));
 }
