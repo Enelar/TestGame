@@ -4,11 +4,13 @@ class energy
 {
 private:
   word max, now;
-  int delta;
+  int deltaPerSec, prevState;
 public:
   energy::energy(word max, int delta = 0, word now = 0);
+  void energy::UpdateState();
 
   word &Max();
   word &Now();
-  int &Delta();
+  int &DeltaPerSec();
+  int State();
 };

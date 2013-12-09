@@ -5,7 +5,7 @@ namespace
   const float32 KERNO_DEFAULT_LIFE = 42;
   const b2Vec2 KERNO_DEFAULT_SIZE = b2Vec2(32, 32);
   const word KERNO_DEFAULT_ENERGY_MAX = 65;
-  const word KERNO_DEFAULT_ENERGY_DELTA = 7;
+  const int KERNO_DEFAULT_ENERGY_DELTA = 7;
   const _STL::string KERNO_DEFAULT_SPRITE_ADRESS = "kerno.png";
 };
 
