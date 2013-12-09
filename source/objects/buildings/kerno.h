@@ -1,11 +1,9 @@
-#include "../../entity/entity.h"
-#include "../../game/energy.h"
+#include "building.h"
 
-class kerno : public entity
+class kerno : public building
 {
 public:
-  energy eng;
 
-  kerno::kerno(b2Vec2 _pos);
+  kerno::kerno(b2Vec2 pos);
 
 };
