@@ -168,3 +168,16 @@ CCNode *entity::RawNodeAccess() const
 {
   return sprite;
 }
+
+word &entity::Tag()
+{
+  CCAssert(false, "TODO: Set tag");
+  throw "TODO: Set tag";
+}
+
+word entity::Tag() const
+{
+  if (!sprite)
+    return 0;
+  return sprite->getTag();
+}

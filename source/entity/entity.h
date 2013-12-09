@@ -49,6 +49,9 @@ public:
   //etc
   */
 
+protected:  word &Tag();
+public: word Tag() const;
+
 protected:
   CCNode *&RawNodeAccess();
   CCNode *RawNodeAccess() const;
