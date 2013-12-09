@@ -1,6 +1,6 @@
-#include "building.h"
+#include "conectNode.h"
 
-class transmitter : public building
+class transmitter : public conectNode
 {
 public:
 

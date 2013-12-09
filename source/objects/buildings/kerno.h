@@ -1,6 +1,6 @@
-#include "building.h"
+#include "conectNode.h"
 
-class kerno : public building
+class kerno : public conectNode
 {
 public:
 
