@@ -1,14 +1,16 @@
-#include "../entity/entity.h"
+#include "../stdafx.h"
 
 class energy
 {
 private:
   word max, now;
-  int delta;
+  int deltaPerSec, prevState;
 public:
-  energy::energy(word _max, word _delta = 0, int _now = 0);
+  energy::energy(word max, int delta = 0, word now = 0);
+  void energy::UpdateState();
 
   word &Max();
   word &Now();
-  int &Delta();
+  int &DeltaPerSec();
+  int State();
 };

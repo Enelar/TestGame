@@ -1,10 +1,15 @@
 #include "energy.h"
 
-energy::energy(word _max, word _delta, int _now)
+energy::energy(word _max, int _deltaPerSec, word _now)
 {
   max = _max;
-  delta = _delta;
+  deltaPerSec = prevState = _deltaPerSec;
   now = _now;
+}
+
+void energy::UpdateState()
+{
+  prevState = now;
 }
 
 word &energy::Max()
@@ -15,7 +20,12 @@ word &energy::Now()
 {
   return now;
 }
-int &energy::Delta()
+int &energy::DeltaPerSec()
 {
-  return delta;
+  return deltaPerSec;
+}
+
+int energy::State()
+{
+  return now - prevState;
 }
