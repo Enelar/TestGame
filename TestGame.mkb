@@ -29,6 +29,11 @@ files
     (source/game)
     "*.cpp"
     "*.h"
+
+    [source/objects/buildings]
+    (source/objects/buildings)
+    "*.cpp"
+    "*.h"
 }
 
 subprojects

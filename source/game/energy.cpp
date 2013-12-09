@@ -1,6 +1,6 @@
 #include "energy.h"
 
-energy::energy(word _max, word _delta, int _now)
+energy::energy(word _max, int _delta, word _now)
 {
   max = _max;
   delta = _delta;
