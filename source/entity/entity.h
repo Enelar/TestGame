@@ -2,6 +2,7 @@
 
 #include "../stdafx.h"
 #include <string>
+#include "../proxy.h"
 
 class entity
 {
@@ -20,19 +21,25 @@ class entity
   void RecalculateValues( double dt );
   void SyncValues() const;
 public:
+  template<typename T, bool is_const = false>
+  struct ret_type
+  {
+    typedef typename std::conditional<is_const, proxy<const T>, proxy<T>>::type type;
+  };
+
   entity( std::string image_name, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
   entity( b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
   entity( cocos2d::CCNode *sprite, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
 
   virtual ~entity();
 
-  b2Vec2 &Position();
-  b2Vec2 &Velosity();
-  b2Vec2 &Acceleration();
-  b2Vec2 Size() const;
-  b2Vec2 &Size();
-  float32 MaxLife() const;
-  float32 &CurLife();
+  ret_type<b2Vec2>::type Position();
+  ret_type<b2Vec2>::type Velosity();
+  ret_type<b2Vec2>::type Acceleration();
+  ret_type<b2Vec2, true>::type Size() const;
+  ret_type<b2Vec2>::type Size();
+  ret_type<float32, true>::type MaxLife() const;
+  ret_type<float32>::type CurLife();
 
   void Update( double dt );
 
@@ -49,8 +56,8 @@ public:
   //etc
   */
 
-protected:  word &Tag();
-public: word Tag() const;
+protected:  ret_type<word>::type Tag();
+public: ret_type<word, true>::type Tag() const;
 
 protected:
   CCNode *&RawNodeAccess();

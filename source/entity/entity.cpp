@@ -43,37 +43,37 @@ entity::~entity()
   entity_manager::Instance().RemoveObject(this);
 }
 
-b2Vec2 &entity::Position()
+entity::ret_type<b2Vec2>::type entity::Position()
 {
   return pos;
 }
 
-b2Vec2 &entity::Velosity()
+entity::ret_type<b2Vec2>::type entity::Velosity()
 {
   return vel;
 }
 
-b2Vec2 &entity::Acceleration()
+entity::ret_type<b2Vec2>::type entity::Acceleration()
 {
   return acc;
 }
 
-b2Vec2 &entity::Size()
+entity::ret_type<b2Vec2>::type entity::Size()
 {
   return size;
 }
 
-b2Vec2 entity::Size() const
+entity::ret_type<b2Vec2, true>::type entity::Size() const
 {
   return size;
 }
 
-float32 entity::MaxLife() const
+entity::ret_type<float32, true>::type entity::MaxLife() const
 {
   return life.y;
 }
 
-float32 &entity::CurLife()
+entity::ret_type<float32>::type entity::CurLife()
 {
   return life.x;
 }
@@ -169,13 +169,13 @@ CCNode *entity::RawNodeAccess() const
   return sprite;
 }
 
-word &entity::Tag()
+entity::ret_type<word>::type entity::Tag()
 {
   CCAssert(false, "TODO: Set tag");
   throw "TODO: Set tag";
 }
 
-word entity::Tag() const
+entity::ret_type<word, true>::type entity::Tag() const
 {
   if (!sprite)
     return 0;
