@@ -38,10 +38,11 @@ obj_camera::connector<b2Vec2> obj_camera::Acceleration()
   return connector<b2Vec2>(Update(acc, &entity::Acceleration), entity::Acceleration(), InvertConvert);
 }
 
-template<typename OriginT>
-b2Vec2 &obj_camera::Update( b2Vec2 &target, b2Vec2 &(OriginT::*Origin)() )
+template<typename OriginT, typename RetT>
+b2Vec2 &obj_camera::Update( b2Vec2 &target, RetT (OriginT::*Origin)() )
 {
-  target = InvertConvert((this->*Origin)());
+  b2Vec2 &vec = (this->*Origin)();
+  target = InvertConvert(vec);
   return target;
 }
 
@@ -53,7 +54,8 @@ void obj_camera::OnUpdate( double dt )
 
 b2Vec2 obj_camera::Size() const
 {
-  entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
+  CCAssert(false, "Obj camera size");
+  //entity::Size() = convert<b2Vec2>(RawNodeAccess()->getContentSize());
   return entity::Size();
 }
 

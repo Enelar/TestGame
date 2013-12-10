@@ -18,8 +18,8 @@ public:
   void OnUpdate( double dt ) override;
 
 private:
-  template<typename OriginT>
-  b2Vec2 &Update( b2Vec2 &, b2Vec2 &(OriginT::*)() ); 
+  template<typename OriginT, typename RetT>
+  b2Vec2 &Update( b2Vec2 &, RetT (OriginT::*)() ); 
 };
 
 template<typename T>

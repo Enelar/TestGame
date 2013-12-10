@@ -15,8 +15,9 @@ public:
 
   ~proxy();
 
+#define OPERATOR_CONST 
 #define DECLARE_UNAR_OPERATOR(op) \
-  DECLARE_SIDE_EFFECT_OPERATOR(op, const T &arg, )
+  DECLARE_SIDE_EFFECT_OPERATOR(op, const T &arg, OPERATOR_CONST)
 #define DECLARE_SIDE_EFFECT_OPERATOR(op, arg, overload) \
   DECLARE_OPERATOR(T &, op, arg, overload)
 #define DECLARE_OPERATOR(ret, name, arg, overload) \
@@ -26,11 +27,22 @@ public:
   DECLARE_UNAR_OPERATOR(-=)
   DECLARE_UNAR_OPERATOR(*=)
   DECLARE_UNAR_OPERATOR(/=)
+  DECLARE_UNAR_OPERATOR(=)
 
-  DECLARE_SIDE_EFFECT_OPERATOR(*, void,)
-  DECLARE_OPERATOR(, T *, , )
+  DECLARE_OPERATOR(OPERATOR_CONST T&, *,,OPERATOR_CONST)
+  DECLARE_OPERATOR(, T &, ,OPERATOR_CONST)
+  DECLARE_OPERATOR(, T *, ,OPERATOR_CONST)
+
   DECLARE_OPERATOR(T *,->,,)
   DECLARE_OPERATOR(const T *,->,,const)
+
+#undef OPERATOR_CONST
+#define OPERATOR_CONST const
+  DECLARE_OPERATOR(OPERATOR_CONST T&, *,,OPERATOR_CONST)
+  DECLARE_OPERATOR(, T &, ,OPERATOR_CONST)
+  DECLARE_OPERATOR(, T *, ,OPERATOR_CONST)
+#undef OPERATOR_CONST
+#define OPERATOR_CONST 
 };
 
 #define TEMPLATE template<typename T> \
@@ -53,20 +65,42 @@ UNAR_OPERATOR(+=)
 UNAR_OPERATOR(-=)
 UNAR_OPERATOR(*=)
 UNAR_OPERATOR(/=)
+UNAR_OPERATOR(=)
 
-DECLARE_SIDE_EFFECT_OPERATOR(*, void,)
+DECLARE_SIDE_EFFECT_OPERATOR(*,,)
 {
   return *origin;
 }
 
-DECLARE_OPERATOR(T *,->,,)
+DECLARE_OPERATOR(const T&, *,,const)
 {
   return origin;
 }
 
+
+DECLARE_OPERATOR(T *,->,,)
+{
+  return &origin;
+}
+
 DECLARE_OPERATOR(const T *,->,,const)
 {
+  return &origin;
+}
+
+TEMPLATE_SPECIAL::operator T &() const
+{
   return origin;
+}
+
+TEMPLATE_SPECIAL::operator T &()
+{
+  return origin;
+}
+
+TEMPLATE_SPECIAL::operator T *() const
+{
+  return &origin;
 }
 
 
@@ -103,4 +137,11 @@ TEMPLATE::operator=( const proxy & ) const -> void
 
 TEMPLATE_SPECIAL::~proxy()
 {
+}
+
+template<typename B, typename T>
+B convert( const proxy<T> &a )
+{
+  const T res = *a;
+  return convert<B>(res);
 }
