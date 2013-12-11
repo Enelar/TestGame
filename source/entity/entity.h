@@ -2,6 +2,7 @@
 
 #include "../stdafx.h"
 #include <string>
+#include "../proxy.h"
 
 class entity
 {
@@ -20,19 +21,27 @@ class entity
   void RecalculateValues( double dt );
   void SyncValues() const;
 public:
+  template<typename T, bool is_const = false>
+  struct ret_type
+  {
+    typedef proxy<T> readwrite;
+    typedef proxy<const T> readonly;
+    typedef typename std::conditional<is_const, readonly, readwrite>::type type;
+  };
+
   entity( std::string image_name, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
   entity( b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
   entity( cocos2d::CCNode *sprite, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
 
   virtual ~entity();
 
-  b2Vec2 &Position();
-  b2Vec2 &Velosity();
-  b2Vec2 &Acceleration();
-  b2Vec2 Size() const;
-  b2Vec2 &Size();
-  float32 MaxLife() const;
-  float32 &CurLife();
+  ret_type<b2Vec2>::readwrite Position();
+  ret_type<b2Vec2>::readwrite Velosity();
+  ret_type<b2Vec2>::readwrite Acceleration();
+  ret_type<b2Vec2>::readonly Size() const;
+  ret_type<b2Vec2>::readwrite Size();
+  ret_type<float32>::readonly MaxLife() const;
+  ret_type<float32>::readwrite CurLife();
 
   void Update( double dt );
 
@@ -48,6 +57,9 @@ public:
   virtual void OnMove();
   //etc
   */
+
+protected:  ret_type<word>::readwrite Tag();
+public: ret_type<word>::readonly Tag() const;
 
 protected:
   CCNode *&RawNodeAccess();
