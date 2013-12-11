@@ -24,7 +24,9 @@ public:
   template<typename T, bool is_const = false>
   struct ret_type
   {
-    typedef typename std::conditional<is_const, proxy<const T>, proxy<T>>::type type;
+    typedef proxy<T> readwrite;
+    typedef proxy<const T> readonly;
+    typedef typename std::conditional<is_const, readonly, readwrite>::type type;
   };
 
   entity( std::string image_name, b2Vec2 pos, b2Vec2 size, float32 life, b2Vec2 vel = b2Vec2_zero, b2Vec2 acc = b2Vec2_zero);
@@ -33,13 +35,13 @@ public:
 
   virtual ~entity();
 
-  ret_type<b2Vec2>::type Position();
-  ret_type<b2Vec2>::type Velosity();
-  ret_type<b2Vec2>::type Acceleration();
-  ret_type<b2Vec2, true>::type Size() const;
-  ret_type<b2Vec2>::type Size();
-  ret_type<float32, true>::type MaxLife() const;
-  ret_type<float32>::type CurLife();
+  ret_type<b2Vec2>::readwrite Position();
+  ret_type<b2Vec2>::readwrite Velosity();
+  ret_type<b2Vec2>::readwrite Acceleration();
+  ret_type<b2Vec2>::readonly Size() const;
+  ret_type<b2Vec2>::readwrite Size();
+  ret_type<float32>::readonly MaxLife() const;
+  ret_type<float32>::readwrite CurLife();
 
   void Update( double dt );
 
@@ -56,8 +58,8 @@ public:
   //etc
   */
 
-protected:  ret_type<word>::type Tag();
-public: ret_type<word, true>::type Tag() const;
+protected:  ret_type<word>::readwrite Tag();
+public: ret_type<word>::readonly Tag() const;
 
 protected:
   CCNode *&RawNodeAccess();
