@@ -1,4 +1,5 @@
 #include "../entity/entity.h"
+#include "../proxy.h"
 
 class obj_camera : public entity
 {
@@ -23,11 +24,11 @@ private:
 };
 
 template<typename T>
-struct obj_camera::connector
+struct obj_camera::connector : public proxy<T>
 {
   typedef T (*connector_method)( const T & );
 private:
-  T &origin, &depended;
+  T &depended;
   connector_method method;
 public:
   connector( connector && );
@@ -37,32 +38,32 @@ public:
   void operator=(const connector &);
 
   ~connector();
-  T &operator *();
+  operator proxy<T> &();
 };
 
 template<typename T>
 obj_camera::connector<T>::connector( T &_origin, T &_depended, connector_method _cm )
-  : origin(_origin), depended(_depended), method(_cm)
+  : proxy(_origin), depended(_depended), method(_cm)
 {
 
 }
 
 template<typename T>
 obj_camera::connector<T>::connector( connector &&a )
-  : origin(a.origin), depended(a.depended), method(a.method)
+  : proxy(a.origin), depended(a.depended), method(a.method)
 {
 }
 
 template<typename T>
 obj_camera::connector<T>::~connector()
 {
-  depended = method(origin);
+  depended = method(convert<T>(*this));
 }
 
 template<typename T>
-T &obj_camera::connector<T>::operator *()
+obj_camera::connector<T>::operator proxy<T> &()
 {
-  return origin;
+  return *this;
 }
 
 
@@ -76,4 +77,11 @@ template<typename T>
 void obj_camera::connector<T>::operator=(const connector &)
 {
   static_assert("You cant assign this object");
+}
+
+template<typename B, typename T>
+B convert( const obj_camera::connector<T> &a )
+{
+  const proxy<T> &res = a;
+  return convert<B>(res);
 }
